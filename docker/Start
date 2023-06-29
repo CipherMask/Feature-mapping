@@ -1,0 +1,2 @@
+# Start already created docker container
+docker start -i -a CONTAINER_NAME
