@@ -76,7 +76,7 @@ Once you have completed the installation steps, you are ready to use OpenFL in y
     - On Director machine, start jupyter server and open the notebook to run it.
 
 ### Using Docker:
-  - Docker can useful to deploy FL experiments especially if there are more collaborators.
+  - Docker can be made useful to deploy FL experiments, especially if there are more number of collaborators.
   - OpenFL image is available in [Dockerhub](https://hub.docker.com/r/intel/openfl)
   - For director based approach, the initial connection establishment between Director and Envoys (both running on docker) can be done by exposing a port of director, making envoys connect to that port(director listening ip set as 0.0.0.0 to accept all incoming connections through the exposed port)and with the FQDN/IP of director machine(not 0.0.0.0) with exposed port No. of director. 
   - But when we start the experiment, director starts an aggregator service with new port and ip which will be not exposed at the time of docker image creation. As the workspace were already exported to the envoys at the starting of experiment(which containes the aggregator ip and port created by director to connect collaborators with), the collaborators started by the envoys will fail to connect to the aggreagator service.
