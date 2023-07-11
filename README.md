@@ -2,9 +2,17 @@
 
 ## Repository Overview :
 This repository provides an detailed code of Federated Learning Feature Mapping methodology for tabular data. The repository consists of the following components:
-* The "Director" folder contains a configuration file named director_config.yaml, which sets the listening host, port, and other configuration parameters for the director. It also includes a sample and target shape definition for the unified data across the federation.
-* Inside the "Envoy" folder, you will find the envoy_config.yaml file, which defines the local shard descriptor, collaborator rank, world size, and other settings for the envoy. Additionally, there is a shard_descriptor.py file responsible for loading data from local collaborators to initiate the experiment.
-* The "Workspace" folder contains a Jupyter Notebook (.ipynb) file where a specific federated learning experiment is setup. The notebook includes code to connect to federation devices, creating machine learning model to train, configure federation tasks, choose the federation algorithm, etc.
+* The **"Director"** folder contains:
+  - *director_config.yaml* - which sets the listening host, port, and other configuration parameters for the director. It also includes a sample and target shape definition for the unified data across the federation.
+  - *mandatory_fields.yaml* - which contains the mandatory field/features needed to train the global modal. This fields are in standared/global names as decided by the consortium. This file is send to all collaborating devices when they are connected to the director.
+* Inside the **"Envoy"** folder :
+  - *envoy_config.yaml* - which defines the local shard descriptor, collaborator rank, world size, and other settings for the envoy.
+  - *shard_descriptor.py* - responsible for loading data from local collaborators to initiate the experiment.
+  - *map.json* - which maps the mandatory fields specified by the director with the local dataset fields of the envoy device
+  - *checkAndStartEnvoy.sh* - which checks for the availability of the mandatory fields required to train the global model in the local dataset and then start the envoy.
+  - Map files paths are set inside the shard_descriptor.py file and are created according to each envoys' local dataset by the collaborator manager.
+* The **"Workspace"** folder contains:
+  - A Jupyter Notebook (.ipynb) file where a specific federated learning experiment is setup. The notebook includes code to connect to federation devices, creating machine learning model to train, configure federation tasks, choose the federation algorithm, etc.
 * The "Patches" folder shows the modified stream metrics function, to record experiment metric values along with streaming during runtime.
 * Bash scripts:
     - Docker directory:
